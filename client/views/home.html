@@ -1,0 +1,17 @@
+<template name="home">
+<div class="home container">
+	<div class="input-group">
+		<input type="text" placeholder="Search Hashtags" class="word">
+		<span class="input-group-addon">
+		<i class="glyphicon glyphicon-search"></i>
+		</span>
+	</div>
+	<div class="input-label">Displaying Results from <a href="https://twitter.com/?lang=en" target="_blank">Twitter.com</a></div>
+	<div class="error">Oops, no tags found. Did you mean?</div>
+	<div class="tags">
+		{{#each tags}}
+			<div class="col-md-6">{{this}}</div>
+		{{/each}}
+	</div>
+</div>
+</template>
