@@ -25,20 +25,13 @@ Meteor.methods({
         _.forEach(response.statuses, function(tweet, key) {
             // defaults
             var text = tweet.text,
-                tags = text.split(','); //seperate multiple tags in a single string into array
+                tags = text.match(/#[\w]+(?=\s|$)/g); //seperate multiple tags in a single string into array
 
             // loop through tags
-            _.forEach(tags, function(val, i) {
-                tagsArray = text.split(' '); // break words into array
-                _.forEach(tagsArray, function(val, i) {
-                    // if first letter is # continue
-                    if (tagsArray[i].indexOf('#') === 0) {
-                        // if isolated tag matches word
-                        if (tagsArray[i].indexOf(word) > 0) {
-                            hashtags.push(tagsArray[i]);
-                        }
-                    }
-                });
+            _.forEach(tags, function(tag, i) {
+                if (tag.indexOf(word) > 0) {
+                    hashtags.push(tag);
+                }
             });
         });
         return _.union(hashtags);
